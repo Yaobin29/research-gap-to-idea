@@ -28,6 +28,7 @@ It is designed for researchers who want more than paper summaries or figure tran
 ├── scripts/
 │   └── render_report.py
 ├── references/
+│   ├── anti-adhesion-hydrogel-example.md
 │   ├── causal-model.md
 │   ├── evidence-rubric.md
 │   ├── gap-taxonomy.md
@@ -57,6 +58,10 @@ python scripts/render_report.py report.md report.html
 ```
 
 The renderer uses only the Python standard library and does not load external assets or CDN resources. Its default visual direction is a scientific editorial / research field-notes layout with responsive and print-friendly styling.
+
+## Worked reference
+
+[`references/anti-adhesion-hydrogel-example.md`](references/anti-adhesion-hydrogel-example.md) is a complete worked example for postoperative anti-adhesion hydrogels. It demonstrates the expected level of literature curation, journal metadata, causal evidence tracing, first-principles comparison dimensions, gap analysis, and non-combinatorial Idea Cards. It is a structural example, not a substitute for re-verifying sources in a new project.
 
 ## Recommended input
 
