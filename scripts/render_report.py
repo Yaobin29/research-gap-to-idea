@@ -120,7 +120,11 @@ def render_markdown(source: str) -> tuple[str, str]:
             flush_paragraph(); flush_list()
             level = len(heading.group(1))
             text = heading.group(2)
-            if active_card and (level <= 2 or (level == 3 and not CARD_RE.match(text))):
+            # Every new h2/h3 section closes the previous card. The old
+            # condition exempted the next P/Idea card, which nested all later
+            # cards inside the first one and made the report appear to fold
+            # into itself from the paper-analysis section onward.
+            if active_card and level <= 3:
                 close_card()
             base_id = slugify(text)
             count = used_ids.get(base_id, 0)
