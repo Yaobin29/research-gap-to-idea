@@ -149,7 +149,7 @@ Read `references/quality-gates.md` before finalizing. If the answer is mostly se
 
 ## Reference example
 
-When working on biomaterials, tissue interfaces, or postoperative adhesion problems, read `references/anti-adhesion-hydrogel-example.md` as a complete worked example. Use it to learn the report architecture and the expected level of evidence tracing: literature curation, integrated Paper Analysis Cards, cited causal ledger, first-principles dimension derivation, Evidence Matrix, gap map, and non-combinatorial Idea Cards. Treat the example as a formatting and reasoning pattern, not as evidence for a new topic; re-run literature discovery and source verification for every new task.
+When working on biomaterials, tissue interfaces, or postoperative adhesion problems, read `references/anti-adhesion-hydrogel-example.md` and, when an English deliverable is useful, `references/anti-adhesion-hydrogel-example.en.md` as complete worked examples. Use them to learn the report architecture and the expected level of evidence tracing: literature curation, integrated Paper Analysis Cards, cited causal ledger, first-principles dimension derivation, Evidence Matrix, gap map, and non-combinatorial Idea Cards. Treat the examples as formatting and reasoning patterns, not as evidence for a new topic; re-run literature discovery and source verification for every new task.
 
 ## Compact completion contract
 
