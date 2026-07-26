@@ -5,18 +5,20 @@ description: Synthesize 3–8 related scientific papers from first principles, r
 
 # Research Gap to Idea
 
-Use this skill to move from **papers as documents** to **problems as systems**. The required endpoint is not a polished summary. It is a bounded research model that explains what is established, what remains unknown, which assumptions may fail, and what experiment could discriminate between competing explanations.
+Use this skill to move from **papers as documents** to **problems as systems**. The required endpoint is a bounded research model that explains what is established, what remains unknown, which assumptions may fail, and what experiment could discriminate between competing explanations. Produce both a reusable Markdown report and, when a report artifact is requested, a standalone offline HTML version rendered from the same Markdown source.
 
 ## Operating rules
 
-- Treat the request as `WHY`, `HOW`, or `MIX` before reading deeply.
-- For `MIX`, keep the evidence/causal track separate from the design/idea track until the evidence map is complete.
-- Prefer 3–8 papers addressing one shared problem. If fewer than three papers are available, state that cross-paper conclusions are provisional and either request more sources or perform a clearly labelled limited synthesis.
-- Use the supplied papers, stable URLs, DOIs, abstracts, figures, methods, results, and supplementary information as the evidence base. Do not invent paper content or citations.
-- When literature discovery is needed, reuse `paper-3w-research` when available or use an appropriate literature search tool, then verify DOI, PMID, arXiv ID, or stable URL before making a source-specific claim.
-- Default to Chinese output unless the user asks for another language. Keep paper titles, technical terms, variable names, and source identifiers in their original form where precision matters.
-- Mark the evidence status of important conclusions as `Demonstrated`, `Supported`, `Inferred`, or `Speculative`.
-- Never turn an author's interpretation into an observation. Never call an idea novel merely because it sounds plausible; identify the comparison set and the unresolved gap.
+- Classify the request as `WHY`, `HOW`, or `MIX` before reading deeply. For `MIX`, separate the evidence/causal track from the design/idea track until the evidence map is complete.
+- Prefer 3–8 core papers addressing one shared problem, supplemented by a separate context set of reviews, clinical benchmarks, standards, or stronger comparison studies. Do not silently treat the context set as mechanistic primary evidence.
+- Before 3W extraction, run literature curation. Record the search scope, query logic, date, source set, inclusion/exclusion rationale, source role, journal, study type, model, and evidence tier. If only supplied papers are used, label the synthesis `closed-set synthesis` and do not claim field-wide completeness.
+- Use journal metadata as provenance and context, not as a substitute for study quality. Judge evidence quality from controls, model fit, directness of mechanism measurements, comparator quality, outcome relevance, transparency, and external validation.
+- Perform an adversarial backcheck for central claims: look for higher-quality primary studies, systematic reviews, clinical benchmarks, and conflicting evidence. Use `references/literature-curation.md`.
+- Use supplied papers, stable URLs, DOIs, abstracts, figures, methods, results, supplementary information, and verified literature sources as the evidence base. Do not invent paper content or citations.
+- When literature discovery is needed, reuse `paper-3w-research` when available or use an appropriate literature search tool, then verify DOI, PMID, journal, year, and stable URL before making source-specific claims.
+- Default to Chinese output unless the user asks for another language. Keep paper titles, technical terms, variable names, journal names, and source identifiers in their original form where precision matters.
+- Mark important conclusions as `Demonstrated`, `Supported`, `Inferred`, or `Speculative`.
+- Never turn an author's interpretation into an observation. Never call an idea novel merely because it sounds plausible or combines named components.
 
 ## Workflow
 
@@ -31,123 +33,134 @@ Start with a compact problem frame:
 | Target Y | What state, function, or outcome is desired? |
 | Current state | What can the field do now, and under which conditions? |
 | Controllable X | Which intervention, parameter, or state variable can be changed? |
-| Mechanism M | What intermediate physical, chemical, biological, or computational state could transmit the effect? |
+| Mechanism M | What intermediate state could transmit the effect? |
 | Main constraint | What must be preserved or cannot be changed? |
-| Observable | What measurement could distinguish the competing explanations? |
+| Observable | What measurement could distinguish competing explanations? |
 
 Rewrite the shared question as:
 
 > For system **S**, can controlling **X**, through mechanism **M**, change outcome **Y** while satisfying **the main constraint**?
 
-Do not accept a paper title or author framing as the final problem definition without testing it against the methods and measurements.
+Do not accept a paper title or author framing as the final problem definition without testing it against methods, measurements, controls, and outcome definitions.
 
-### 2. Build an enhanced 3W record for every paper
+### 2. Curate and grade the literature set
 
-Organize each paper under `WHY / HOW / WHAT`, but expand each section:
+Read `references/literature-curation.md`. Create two visibly separate sets:
 
-- **WHY**: record the author-claimed problem, the problem the design can actually address, and the hidden assumptions required by the design.
-- **HOW**: reconstruct the causal chain as `intervention → physical/chemical change → biological/computational sensing → response → phenotype/function`. Mark each link as directly measured, correlated, literature-supported, or untested.
-- **WHAT**: separate `Observation`, `Measurement`, `Interpretation`, and `Claim`. Record controls, comparison groups, parameter ranges, time points, spatial scale, and functional readouts that limit the claim.
+- **Core primary set**: papers used for the cross-paper mechanistic synthesis.
+- **Context and adversarial set**: reviews, clinical or commercial benchmarks, standards, higher-quality comparison studies, and conflicting studies used to calibrate claims.
 
-Read `references/evidence-rubric.md` for the evidence labels, causal-chain notation, and per-paper record.
+For every paper, record complete metadata and a reason for inclusion. For every important omitted or discovered source, record why it was not promoted into the core set. Do not infer quality from journal prestige alone.
 
-### 3. Construct the cross-paper evidence map
+### 3. Build one integrated Paper Analysis Card per core paper
 
-Do not output papers in isolation. Build a matrix with at least these columns:
+Do not create a detached paper-selection list followed by disconnected 3W summaries. Each paper must appear as one analysis card containing:
 
-| Dimension | Paper A | Paper B | Paper C | Integrated judgment |
-|---|---|---|---|---|
-| Shared problem |  |  |  |  |
-| Intervention / controllable X |  |  |  |  |
-| Scale and time window |  |  |  |  |
-| Direct measurements |  |  |  |  |
-| Proposed mechanism M |  |  |  |  |
-| Functional endpoint Y |  |  |  |  |
-| Key assumptions |  |  |  |  |
-| Main limitation |  |  |  |  |
-| Evidence status |  |  |  |  |
+- Citation metadata: title, authors, journal, year, DOI/PMID/stable URL;
+- study type, model, source role, evidence tier, and why included;
+- **WHY**: author-claimed problem, problem the design can actually address, hidden assumptions;
+- **HOW**: intervention, controllable variables, causal chain, and evidence status for every link;
+- **WHAT**: Observation, Measurement, Interpretation, Claim, controls, comparator, parameter range, time point, spatial scale, functional readout;
+- direct evidence, unknown links, main limitation, and contribution to the cross-paper comparison.
 
-Then classify relationships:
+Read `references/evidence-rubric.md` for the evidence labels and card schema.
 
-- **Convergence**: independent methods support the same proposition.
-- **Complementarity**: different papers solve different links in the same causal chain.
-- **Contradiction**: papers report incompatible outcomes or explanations.
+### 4. Derive first-principles comparison dimensions
 
-For every contradiction, test material, cell or organism, parameter window, timing, spatial scale, measurement definition, analysis method, and true mechanism difference before calling it a scientific contradiction.
+Before building the Evidence Matrix, derive dimensions through:
 
-### 4. Identify the three gap classes
+```text
+target outcome Y
+  → necessary system states
+  → physical/biological conditions maintaining those states
+  → failure boundaries
+  → measurable readouts
+  → cross-paper comparison dimensions
+```
 
-Read `references/gap-taxonomy.md` and record the strongest evidence for each gap:
+For every dimension, state its causal-link ID, why it is necessary, its readout, and its failure boundary. Do not compare arbitrary material properties without explaining how they can affect Y.
 
-- **G1 Technical Gap**: what the method cannot control, measure, scale, maintain, or reproduce.
-- **G2 Knowledge Gap**: what is observed but not causally explained.
-- **G3 Assumption Gap**: what the field treats as true without sufficient testing.
+### 5. Build the causal evidence ledger and cross-paper evidence map
 
-For each gap, state the exact evidence boundary. A gap is not simply a sentence from a Discussion section; it must be connected to a missing measurement, an unresolved comparison, an untested causal link, or a shared assumption.
+Read `references/causal-model.md` and construct a cited ledger for every causal arrow:
 
-### 5. Generate candidate hypotheses
+| Link ID | Causal link | Sources | Evidence type | Measured | Unknown/alternative | Minimal discriminator |
+|---|---|---|---|---|---|---|
 
-Use `references/idea-operators.md` to apply the five operators:
+Use `[D]` directly measured, `[C]` correlated, `[L]` supported by prior literature, and `[U]` untested. Every arrow must have a source or an explicit `[U]` label.
 
-1. Remove a Bottleneck.
-2. Explain an Anomaly.
-3. Resolve a Contradiction.
-4. Bridge Scales.
-5. Reverse the Causality.
+Then build an Evidence Matrix whose rows are derived dimensions and include the rationale, causal link, missing measurement, and failure boundary. Classify relationships as:
 
-Generate at least one candidate in each of these classes:
+- **Convergence**: independent methods support the same bounded proposition;
+- **Complementarity**: different papers address different links in one causal chain;
+- **Contradiction**: comparable papers report incompatible outcomes or mechanisms.
 
-- **Incremental**: a bounded extension that tests a missing variable or control.
-- **Integrative**: a combination that connects complementary capabilities from different papers.
-- **Transformative**: a hypothesis that changes the problem definition or challenges a shared assumption.
+Before calling a contradiction scientific, test material, cell or organism, parameter window, timing, spatial scale, measurement definition, analysis method, and model severity.
 
-Do not accept generic future-work statements such as “use more samples,” “test more cell types,” “perform animal studies,” or “combine AI” unless they specify a new variable, mechanism, discriminating experiment, prediction, and falsification condition.
+### 6. Identify G1, G2, and G3 gaps
 
-### 6. Falsify before ranking
+Read `references/gap-taxonomy.md` and connect every gap to source evidence and a causal ledger link:
 
-For every candidate, write one explicit causal sentence:
+- **G1 Technical Gap**: what cannot be controlled, measured, maintained, scaled, or reproduced;
+- **G2 Knowledge Gap**: what is observed but not causally explained;
+- **G3 Assumption Gap**: what is treated as true without sufficient testing.
+
+For each gap, state the evidence boundary, consequence, competing explanation, and minimal discriminator. A gap is not merely a Discussion sentence.
+
+### 7. Generate non-combinatorial candidate hypotheses
+
+Read `references/idea-operators.md`. Generate at least one defensible candidate in each class:
+
+- **Incremental**: bounded extension testing a missing variable or control;
+- **Integrative**: closes a missing causal link between complementary capabilities;
+- **Transformative**: changes the problem definition or challenges a shared assumption.
+
+Every candidate must trace:
+
+```text
+unresolved phenomenon
+  → unresolved causal link
+  → why existing studies cannot resolve it
+  → minimal state variable
+  → new hypothesis
+  → discriminating experiment
+  → new prediction
+```
+
+Apply the non-combination test: remove paper names and component names from the idea. If no independent causal proposition, state variable, threshold, coupling, or new prediction remains, reject it as simple stitching. Require ablation or factorial controls whenever the idea uses multiple modules.
+
+### 8. Falsify before ranking
+
+For every candidate, write:
 
 > When **X** changes under **condition C**, it changes **Y** through **mechanism M**.
 
-Then specify:
+Then specify source evidence IDs, unresolved causal link, why existing explanations are insufficient, minimal experiment, predicted result, falsification condition, alternative explanation, ablation/factorial control, feasibility, risk, and scientific value. Score 1–5 for `Novelty`, `Importance`, `Mechanistic depth`, `Testability`, `Feasibility`, and `Leverage`; use the profile to rank rather than hide uncertainty.
 
-- the minimal experiment that distinguishes the new hypothesis from the strongest existing explanation;
-- the predicted result if the hypothesis is correct;
-- the result that would falsify it;
-- the most important alternative explanation and its control;
-- the main feasibility and interpretation risk.
+### 9. Produce Markdown and standalone HTML
 
-Score each candidate from 1–5 for `Novelty`, `Importance`, `Mechanistic depth`, `Testability`, `Feasibility`, and `Leverage`. Use the score to rank, not to hide uncertainty. A high score cannot override weak evidence or an unfalsifiable hypothesis.
+Use `references/output-template.md`. The final synthesis must contain the literature curation, integrated Paper Analysis Cards, first-principles dimension derivation, cited causal ledger, Evidence Matrix, evidence states, gaps, cross-paper relationships, three Idea Cards, preferred idea, experiments, and evidence ceiling.
 
-### 7. Produce the final synthesis
+When an artifact is requested, render the final Markdown with `scripts/render_report.py` using `assets/report-template.html`. The HTML must be a single offline file with embedded CSS, responsive layout, print styles, navigation, collapsible paper cards, horizontally scrollable matrices, evidence-state styling, and Idea Card styling. Do not use external CDN assets.
 
-Use `references/output-template.md` for the response structure. The final response must contain:
+### 10. Run quality gates
 
-1. One-sentence core judgment.
-2. First-principles problem decomposition.
-3. Enhanced 3W records with source identifiers.
-4. Cross-paper evidence matrix.
-5. What is demonstrated, supported, inferred, and speculative.
-6. Technical, knowledge, and assumption gaps.
-7. Convergences, complementarities, contradictions, and anomalies.
-8. At least three Idea Cards covering incremental, integrative, and transformative candidates.
-9. The selected idea and why it outranks the alternatives.
-10. The next smallest action, required evidence, first experiment, key readouts, and Go/No-Go criteria.
-
-### 8. Run quality gates
-
-Read `references/quality-gates.md` before finalizing. If the answer is mostly sequential summaries, figure translation, repeated abstracts, or unsupported “future work,” revise it. If a central conclusion has no evidence status or a selected idea has no falsification condition, do not present the synthesis as complete.
+Read `references/quality-gates.md` before finalizing. If the answer is mostly sequential summaries, lacks literature curation, has uncited causal arrows, uses arbitrary matrix dimensions, or proposes component stitching without a new causal prediction, revise it. If a central conclusion has no evidence status or a selected idea has no falsification condition, do not present the synthesis as complete.
 
 ## Compact completion contract
 
 The task is complete only when:
 
-- the shared problem is stated independently of the paper titles;
+- the literature set has a documented scope, quality tier, inclusion rationale, and adversarial backcheck;
+- every core paper has one integrated card with journal metadata and enhanced WHY/HOW/WHAT;
+- the shared problem is stated independently of paper titles;
+- comparison dimensions are derived from necessary states, causal links, readouts, and failure boundaries;
+- every causal arrow has a source or explicit `[U]` status;
 - direct evidence is separated from interpretation and claim;
-- the causal chain has explicit evidence boundaries;
-- G1, G2, and G3 gaps have been considered;
-- cross-paper convergence, complementarity, and contradiction have been tested;
-- at least three falsifiable Idea Cards are present;
-- the selected idea has a minimal discriminating experiment and Go/No-Go rule;
+- G1, G2, and G3 gaps are connected to evidence;
+- convergence, complementarity, and contradiction have been tested;
+- at least three non-combinatorial falsifiable Idea Cards are present;
+- the selected idea has a minimal discriminating experiment, ablation/factorial control, and Go/No-Go rule;
 - citations or stable source identifiers support source-specific claims;
-- uncertainty and evidence limits are visible in the final output.
+- uncertainty and evidence limits are visible;
+- Markdown and standalone HTML are generated from the same report content when requested.

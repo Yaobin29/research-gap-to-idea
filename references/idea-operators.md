@@ -57,15 +57,22 @@ Every candidate must use this schema:
 ## Idea <ID> — <short title>
 
 - Class: Incremental / Integrative / Transformative
+- Idea type: Material / Mechanism / Measurement / Framework
 - Operator: <one of the five operators>
 - Source gap: G1 / G2 / G3 / contradiction <ID>
+- Source evidence IDs: <paper IDs and causal-link IDs>
 - Unresolved problem: <bounded statement>
+- Unresolved causal link: <link that is not established>
 - New hypothesis: When <X> changes under <condition>, <Y> changes through <M>.
 - Why existing explanations are insufficient: <specific evidence boundary>
+- Minimal state variable: <the state that controls the transition or outcome>
+- What is genuinely new: <new relation, threshold, coupling, measurement, or problem definition>
+- Non-combination novelty check: <why this is more than combining existing components>
 - Critical experiment: <smallest experiment that separates explanations>
 - Predicted result: <what should be observed if true>
 - Falsification condition: <what would make it false>
 - Controls and alternative explanation: <minimum controls>
+- Ablation or factorial control: <how to separate module effects from the new mechanism>
 - Scientific value: Technical / Mechanistic / Contradiction / Cross-scale / Assumption challenge
 - Feasibility: <resources, platform fit, key dependency>
 - Risks: <interpretation, execution, or novelty risk>
@@ -90,3 +97,13 @@ Score each dimension from 1 to 5:
 | Leverage | Little reuse of existing capability | Reuses some platform or data | Strongly compounds existing capability |
 
 Use the profile of scores, not only the total. A transformative idea with a low feasibility score may remain valuable as a long-term direction, while a high-feasibility idea with weak mechanistic depth may be suitable only as a short-term experiment.
+
+## Non-combination novelty test
+
+Reject an idea as a primary research idea when it only says to combine named materials, geometries, drugs, or response mechanisms. Retain it only if the combination is used to test a new causal proposition and the experiment contains an ablation or factorial design that could distinguish:
+
+```text
+component effect → interaction effect → genuinely new state transition or mechanism
+```
+
+The idea must survive removal of paper names and formulation names. It should still state a testable state variable, causal relationship, threshold, cross-scale coupling, or measurement that the source papers did not establish.

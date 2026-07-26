@@ -62,7 +62,17 @@ The untested link is a knowledge gap, not a demonstrated mechanism.
 ```markdown
 ### <Paper ID> — <short title>
 
+- Title:
+- Authors:
+- Journal:
+- Year:
 - Source: DOI / PMID / arXiv / stable URL
+- Set: Core primary / Context-adversarial
+- Study type:
+- Model:
+- Evidence tier: A / B / C / R
+- Source role:
+- Why included:
 - WHY — author-claimed problem:
 - WHY — problem the design can actually address:
 - WHY — hidden assumptions:
@@ -74,10 +84,19 @@ The untested link is a knowledge gap, not a demonstrated mechanism.
 - WHAT — strongest bounded claim:
 - Controls and comparators:
 - Scale and time window:
+- Directly measured links:
+- Unknown or alternative links:
 - Main limitation:
 - Evidence status:
+- Contribution to cross-paper comparison:
 ```
+
+The paper record is one integrated card. Do not create a separate selection table that repeats or disconnects these fields.
 
 ## Cross-paper evidence rule
 
 Agreement is meaningful only when the papers overlap sufficiently in system, intervention, outcome definition, and observation window. Apparent disagreement must first be decomposed by material, cell or organism, parameter range, timing, spatial scale, assay, and analysis method.
+
+## Citation discipline for causal chains
+
+Every causal arrow must have at least one source identifier or be explicitly marked `[U]`. A source identifier may be a paper ID in the report when the paper card contains the stable DOI, PMID, or URL. Do not cite only a final reference list for a central arrow without connecting the arrow to the source.
