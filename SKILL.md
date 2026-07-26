@@ -147,6 +147,10 @@ When an artifact is requested, render the final Markdown with `scripts/render_re
 
 Read `references/quality-gates.md` before finalizing. If the answer is mostly sequential summaries, lacks literature curation, has uncited causal arrows, uses arbitrary matrix dimensions, or proposes component stitching without a new causal prediction, revise it. If a central conclusion has no evidence status or a selected idea has no falsification condition, do not present the synthesis as complete.
 
+## Reference example
+
+When working on biomaterials, tissue interfaces, or postoperative adhesion problems, read `references/anti-adhesion-hydrogel-example.md` as a complete worked example. Use it to learn the report architecture and the expected level of evidence tracing: literature curation, integrated Paper Analysis Cards, cited causal ledger, first-principles dimension derivation, Evidence Matrix, gap map, and non-combinatorial Idea Cards. Treat the example as a formatting and reasoning pattern, not as evidence for a new topic; re-run literature discovery and source verification for every new task.
+
 ## Compact completion contract
 
 The task is complete only when:
