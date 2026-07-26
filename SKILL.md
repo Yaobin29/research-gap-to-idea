@@ -141,7 +141,7 @@ Then specify source evidence IDs, unresolved causal link, why existing explanati
 
 Use `references/output-template.md`. The final synthesis must contain the literature curation, integrated Paper Analysis Cards, first-principles dimension derivation, cited causal ledger, Evidence Matrix, evidence states, gaps, cross-paper relationships, three Idea Cards, preferred idea, experiments, and evidence ceiling.
 
-When an artifact is requested, render the final Markdown with `scripts/render_report.py` using `assets/report-template.html`. The HTML must be a single offline file with embedded CSS, responsive layout, print styles, navigation, collapsible paper cards, horizontally scrollable matrices, evidence-state styling, and Idea Card styling. Do not use external CDN assets.
+When an artifact is requested, render the final Markdown with `scripts/render_report.py` using `assets/report-template.html`. Follow the bundled `frontend-design`-compatible visual direction: choose a clear contextual aesthetic, use editorial hierarchy and restrained but distinctive color/typography, and avoid generic dashboard styling. The default report direction is a scientific editorial / research field-notes layout. The HTML must be a single offline file with embedded CSS, responsive layout, print styles, navigation, collapsible paper cards, horizontally scrollable matrices, evidence-state styling, and Idea Card styling. Do not use external CDN assets. Visually inspect at desktop and narrow mobile widths before delivery.
 
 ### 10. Run quality gates
 

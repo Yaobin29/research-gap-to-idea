@@ -56,7 +56,7 @@ When a report file is requested, render the Markdown report as a single offline 
 python scripts/render_report.py report.md report.html
 ```
 
-The renderer uses only the Python standard library and does not load external assets or CDN resources.
+The renderer uses only the Python standard library and does not load external assets or CDN resources. Its default visual direction is a scientific editorial / research field-notes layout with responsive and print-friendly styling.
 
 ## Recommended input
 
