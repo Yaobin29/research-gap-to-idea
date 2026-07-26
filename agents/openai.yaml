@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Gap to Idea"
+  short_description: "Turn related papers into evidence gaps and testable ideas"
+  default_prompt: "Use $research-gap-to-idea to synthesize these related papers into evidence gaps, testable hypotheses, and a minimal validation experiment."
